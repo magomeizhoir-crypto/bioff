@@ -29,240 +29,34 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* APPLE FLOATING ORBS */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-      z-index: 1;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-    }
+    .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), rgba(255,255,255,0.03)); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.08); pointer-events: none; z-index: 1; box-shadow: inset 0 1px 0 rgba(255,255,255,0.2); }
+    .bubble1 { width: 320px; height: 320px; top: -160px; left: -120px; animation: floatSlow 25s ease-in-out infinite; }
+    .bubble2 { width: 220px; height: 220px; bottom: -100px; right: -100px; animation: floatSlow 20s ease-in-out infinite reverse; }
+    .bubble3 { width: 140px; height: 140px; top: 15%; right: 8%; animation: floatSlow 22s ease-in-out infinite; animation-delay: -8s; }
+    .bubble4 { width: 180px; height: 180px; bottom: 25%; left: 5%; animation: floatSlow 28s ease-in-out infinite; animation-delay: -15s; }
+    @keyframes floatSlow { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(20px, -30px) scale(1.05); } 66% { transform: translate(-15px, 15px) scale(0.98); } }
     
-    .bubble1 {
-      width: 320px;
-      height: 320px;
-      top: -160px;
-      left: -120px;
-      animation: floatSlow 25s ease-in-out infinite;
-    }
+    .card { width: 100%; max-width: 380px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px) saturate(180%); -webkit-backdrop-filter: blur(40px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 44px 32px; text-align: center; color: white; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.05); position: relative; z-index: 10; }
+    .card::before { content: ''; position: absolute; inset: 0; border-radius: 28px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; }
+    .card.shatter { animation: shatterAnim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes shatterAnim { 0% { transform: scale(1); opacity: 1; filter: blur(0); } 100% { transform: scale(0.92); opacity: 0; filter: blur(8px); } }
     
-    .bubble2 {
-      width: 220px;
-      height: 220px;
-      bottom: -100px;
-      right: -100px;
-      animation: floatSlow 20s ease-in-out infinite reverse;
-    }
+    .shard { position: fixed; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 0.5px solid rgba(255,255,255,0.2); pointer-events: none; z-index: 9999; animation: flyShard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes flyShard { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; } }
     
-    .bubble3 {
-      width: 140px;
-      height: 140px;
-      top: 15%;
-      right: 8%;
-      animation: floatSlow 22s ease-in-out infinite;
-      animation-delay: -8s;
-    }
-    
-    .bubble4 {
-      width: 180px;
-      height: 180px;
-      bottom: 25%;
-      left: 5%;
-      animation: floatSlow 28s ease-in-out infinite;
-      animation-delay: -15s;
-    }
-    
-    @keyframes floatSlow {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(20px, -30px) scale(1.05); }
-      66% { transform: translate(-15px, 15px) scale(0.98); }
-    }
-    
-    /* TRUE APPLE GLASSMORPHISM */
-    .card {
-      width: 100%;
-      max-width: 380px;
-      /* Apple Control Center style */
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 28px;
-      padding: 44px 32px;
-      text-align: center;
-      color: white;
-      /* iOS widget shadow */
-      box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.12),
-        0 0 0 0.5px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-      position: relative;
-      z-index: 10;
-    }
-    
-    /* Subtle noise texture like macOS */
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    .card.shatter {
-      animation: shatterAnim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    @keyframes shatterAnim {
-      0% { transform: scale(1); opacity: 1; filter: blur(0); }
-      100% { transform: scale(0.92); opacity: 0; filter: blur(8px); }
-    }
-    
-    .shard {
-      position: fixed;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
-      border: 0.5px solid rgba(255,255,255,0.2);
-      pointer-events: none;
-      z-index: 9999;
-      animation: flyShard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    @keyframes flyShard {
-      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-      100% { 
-        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); 
-        opacity: 0; 
-      }
-    }
-    
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 0.5px solid rgba(255, 255, 255, 0.3);
-      margin: 0 auto 20px;
-      object-fit: cover;
-      box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      position: relative;
-      z-index: 2;
-    }
-    
-    h1 { 
-      font-size: 28px; 
-      margin-bottom: 8px; 
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      padding: 7px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 20px;
-      border: 0.5px solid rgba(255, 255, 255, 0.15);
-      position: relative;
-      z-index: 2;
-    }
-    
-    .bio {
-      opacity: 0.75;
-      line-height: 1.5;
-      margin-bottom: 32px;
-      font-size: 15px;
-      font-weight: 400;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .links { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 10px;
-      position: relative;
-      z-index: 2;
-    }
-    
-    /* APPLE BUTTON STYLE */
-    .link-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 0.5px solid rgba(255, 255, 255, 0.15);
-      color: white;
-      text-decoration: none;
-      padding: 16px;
-      border-radius: 16px;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      box-shadow: 
-        0 1px 0 rgba(255, 255, 255, 0.15),
-        0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-    
-    .link-btn:active {
-      transform: scale(0.96);
-      background: rgba(255, 255, 255, 0.18);
-    }
-    
+    .avatar { width: 110px; height: 110px; border-radius: 50%; border: 0.5px solid rgba(255, 255, 255, 0.3); margin: 0 auto 20px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3); position: relative; z-index: 2; }
+    h1 { font-size: 28px; margin-bottom: 8px; font-weight: 700; letter-spacing: -0.5px; position: relative; z-index: 2; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(20px); padding: 7px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; margin-bottom: 20px; border: 0.5px solid rgba(255, 255, 255, 0.15); position: relative; z-index: 2; }
+    .bio { opacity: 0.75; line-height: 1.5; margin-bottom: 32px; font-size: 15px; font-weight: 400; position: relative; z-index: 2; direction: rtl; }
+    .links { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 2; }
+    .link-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 0.5px solid rgba(255, 255, 255, 0.15); color: white; text-decoration: none; padding: 16px; border-radius: 16px; font-weight: 600; font-size: 15px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08); }
+    .link-btn:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.18); }
     .link-btn i { font-size: 18px; }
-    
-    .btn-ff {
-      background: linear-gradient(90deg, #ff0844 0%, #ffb199 100%);
-      border: none;
-      box-shadow: 
-        0 4px 20px rgba(255, 8, 68, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-    
-    .btn-ff:active {
-      background: linear-gradient(90deg, #e0003c 0%, #ff9f85 100%);
-    }
-    
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin: 32px 0 0;
-      padding-top: 28px;
-      border-top: 0.5px solid rgba(255, 255, 255, 0.15);
-      position: relative;
-      z-index: 2;
-    }
-    
-    .stat h3 { 
-      font-size: 22px; 
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .stat p { 
-      font-size: 12px; 
-      opacity: 0.6; 
-      font-weight: 500;
-      margin-top: 2px;
-    }
+    .btn-ff { background: linear-gradient(90deg, #ff0844 0%, #ffb199 100%); border: none; box-shadow: 0 4px 20px rgba(255, 8, 68, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+    .btn-ff:active { background: linear-gradient(90deg, #e0003c 0%, #ff9f85 100%); }
+    .stats { display: flex; justify-content: space-around; margin: 32px 0 0; padding-top: 28px; border-top: 0.5px solid rgba(255, 255, 255, 0.15); position: relative; z-index: 2; }
+    .stat h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .stat p { font-size: 12px; opacity: 0.6; font-weight: 500; margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -270,17 +64,15 @@
   <div class="bubble bubble2"></div>
   <div class="bubble bubble3"></div>
   <div class="bubble bubble4"></div>
-  <div class="bubble bubble4"></div>
 
   <div class="card" id="glassCard">
-    <img src="Good.gif" alt="Avatar" class="avatar">
+    <img src="avatar.jpg" alt="Avatar" class="avatar">
     
     <h1>mafia_habibi</h1>
     <div class="tag"><i class="fas fa-fire"></i> Heroic FF Player</div>
     
     <p class="bio">
-      Honor Play 10 | 2-finger | Headshot machine. 1v4 specialist. 
-      Add me and let's run CS Ranked.
+      السير ماغوموزيور، إزيل الهاوية المظلمة
     </p>
     
     <div class="links">
@@ -289,13 +81,10 @@
       </div>
       
       <a href="https://youtube.com/@yourchannel" class="link-btn">
-        <i class="fab fa-youtube"></i> YouTube Highlights
-      </a>
-      <a href="https://instagram.com/yourname" class="link-btn">
-        <i class="fab fa-instagram"></i> Instagram
+        <i class="fab fa-youtube"></i> Gameplay
       </a>
       <a href="https://discord.gg/yourcode" class="link-btn">
-        <i class="fab fa-discord"></i> Join My Discord
+        <i class="fas fa-users"></i> Join Squad
       </a>
     </div>
     
